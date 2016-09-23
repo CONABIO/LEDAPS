@@ -17,7 +17,7 @@ ENV USERNAME=root
 RUN mkdir /usr/local/hdf4
 RUN chown $USERNAME /usr/local/hdf4
 
-RUN cd /usr/local/hdf4 && curl http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.12.tar.gz -O && tar -xzvf hdf-4.2.12.tar.gz
+RUN cd /usr/local/hdf4 && curl http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.12.tar.gz -O -L && tar -xzvf hdf-4.2.12.tar.gz
 #RUN cd /usr/local/hdf4 && curl https://www.hdfgroup.org/ftp/HDF/previous/src/hdf-4.2.11.tar.gz -O && tar -xzvf hdf-4.2.11.tar.gz
 RUN cd /usr/local/hdf4/hdf-4.2.12 && ./configure && make check install && ldconfig
 
@@ -76,6 +76,8 @@ RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/ncdump $BIN
 ENV NCDF4INC="/usr/include/"
 
 ENV NCDF4LIB="/usr/lib"
+
+ENV ESPA_SCHEMA=/usr/local/espa-common/schema/espa_internal_metadata_v2_0.xsd
 
 RUN cp -r /usr/include/hdf/* /usr/local/espa-surface/ledaps/ledapsAncSrc
 
